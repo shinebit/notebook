@@ -124,3 +124,217 @@ powershell "Get-AppxPackage *Microsoft.BingNews* | Remove-AppxPackage"
 ::卸载快速助手
 powershell "Get-AppxPackage *MicrosoftCorporationII.QuickAssist* | Remove-AppxPackage"
 ```
+
+## Win10优化设置
+```batch
+::关闭快速启动
+powercfg /h off
+::禁用索引服务
+sc stop WSearch
+sc config WSearch start= disabled
+::禁用诊断跟踪服务
+sc stop DiagTrack
+sc config DiagTrack start= disabled
+::禁用诊断执行服务，服务主机诊断，系统主机诊断
+sc stop diagsvc
+sc config diagsvc start= disabled
+sc stop WdiServiceHost
+sc config WdiServiceHost start= disabled
+sc stop WdiSystemHost
+sc config WdiSystemHost start= disabled
+::禁用错误报告
+sc stop WerSvc
+sc config WerSvc start= disabled
+::禁用脱机文件
+sc stop CscService
+sc config CscService start= disabled
+::禁用客户体验改善计划
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\SQMClient\Windows" /f /v "CEIPEnable" /t "REG_DWORD" /d "0"
+::删除IE浏览器
+Dism /online /Disable-Feature /FeatureName:Internet-Explorer-Optional-amd64 /Remove /NoRestart
+::删除媒体功能和Windows Media Player
+Dism /online /Disable-Feature /FeatureName:MediaPlayback /Remove /NoRestart
+Dism /online /Disable-Feature /FeatureName:WindowsMediaPlayer /Remove /NoRestart
+::将任务栏中的Cortana调整为 隐藏
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /f /v "SearchboxTaskbarMode" /t "REG_DWORD" /d "0"
+reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /f /v "SearchboxTaskbarMode" /t "REG_DWORD" /d "0"
+::隐藏“任务视图”按钮
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /f /v "ShowTaskViewButton" /t "REG_DWORD" /d "0"
+reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /f /v "ShowTaskViewButton" /t "REG_DWORD" /d "0"
+::隐藏任务栏上的人脉
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" /f /v "PeopleBand" /t "REG_DWORD" /d "0"
+reg add "HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Explorer" /f /v "HidePeopleBar" /t "REG_DWORD" /d "1"
+reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" /f /v "PeopleBand" /t "REG_DWORD" /d "0"
+::禁用Windows Defender
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender" /f /v "DisableAntiSpyware" /t "REG_DWORD" /d "1"
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" /f /v "DisableRealtimeMonitoring" /t "REG_DWORD" /d "1"
+::不允许在开始菜单显示建议（by powerxing04）
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /f /v "SubscribedContent-338388Enabled" /t "REG_DWORD" /d "0"
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /f /v "SubscribedContent-338389Enabled" /t "REG_DWORD" /d "1"
+reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /f /v "SubscribedContent-338388Enabled" /t "REG_DWORD" /d "0"
+reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /f /v "SubscribedContent-338389Enabled" /t "REG_DWORD" /d "1"
+::关闭在应用商店中查找关联应用
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explorer" /f /v "NoUseStoreOpenWith" /t "REG_DWORD" /d "1"
+::关闭“使用Windows时获取技巧和建议”
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /f /v "SoftLandingEnabled" /t "REG_DWORD" /d "0"
+reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /f /v "SoftLandingEnabled" /t "REG_DWORD" /d "0"
+::关闭OneDrive
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\OneDrive" /f /v "DisableFileSyncNGSC" /t "REG_DWORD" /d "1"
+::关闭多嘴的小娜
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /f /v "AllowCortana" /t "REG_DWORD" /d "0"
+::关闭游戏录制工具
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\GameDVR" /f /v "AppCaptureEnabled" /t "REG_DWORD" /d "0"
+reg add "HKEY_CURRENT_USER\System\GameConfigStore" /f /v "GameDVR_Enabled" /t "REG_DWORD" /d "0"
+reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\GameDVR" /f /v "AppCaptureEnabled" /t "REG_DWORD" /d "0"
+reg add "HKEY_USERS\.DEFAULT\System\GameConfigStore" /f /v "GameDVR_Enabled" /t "REG_DWORD" /d "0"
+::打开资源管理器时显示此电脑
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /f /v "LaunchTo" /t "REG_DWORD" /d "1"
+reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /f /v "LaunchTo" /t "REG_DWORD" /d "1"
+::显示所有文件扩展名
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /f /v "HideFileExt" /t "REG_DWORD" /d "0"
+reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /f /v "HideFileExt" /t "REG_DWORD" /d "0"
+::显示隐藏的项目
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /f /v "Hidden" /t "REG_DWORD" /d "1"
+reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /f /v "Hidden" /t "REG_DWORD" /d "1"
+::创建快捷方式时不添"快捷方式"文字
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer" /f /v "Link" /t "REG_BINARY" /d "00000000"
+reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Explorer" /f /v "Link" /t "REG_BINARY" /d "00000000"
+::添加Windows照片查看器为JPEG、PNG、BMP、GIF、HEIC图片的打开方式
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" /f /v ".jpg" /t "REG_SZ" /d "PhotoViewer.FileAssoc.Tiff"
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" /f /v ".jpe" /t "REG_SZ" /d "PhotoViewer.FileAssoc.Tiff"
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" /f /v ".jpeg" /t "REG_SZ" /d "PhotoViewer.FileAssoc.Tiff"
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" /f /v ".jfif" /t "REG_SZ" /d "PhotoViewer.FileAssoc.Tiff"
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" /f /v ".png" /t "REG_SZ" /d "PhotoViewer.FileAssoc.Tiff"
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" /f /v ".bmp" /t "REG_SZ" /d "PhotoViewer.FileAssoc.Tiff"
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" /f /v ".gif" /t "REG_SZ" /d "PhotoViewer.FileAssoc.Tiff"
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" /f /v ".heic" /t "REG_SZ" /d "PhotoViewer.FileAssoc.Tiff"
+::隐藏此电脑中视频、图片、文档、下载、音乐、桌面、3D对象七个文件夹
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{7d83ee9b-2244-4e70-b1f5-5393042af1e4}\PropertyBag" /f /v "ThisPCPolicy" /t "REG_SZ" /d "Hide"
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag" /f /v "ThisPCPolicy" /t "REG_SZ" /d "Hide"
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{f42ee2d3-909f-4907-8871-4c22fc0bf756}\PropertyBag" /f /v "ThisPCPolicy" /t "REG_SZ" /d "Hide"
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{0ddd015d-b06c-45d5-8c4c-f59713854639}\PropertyBag" /f /v "ThisPCPolicy" /t "REG_SZ" /d "Hide"
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{35286a68-3c57-41a1-bbb1-0eae73d76c95}\PropertyBag" /f /v "ThisPCPolicy" /t "REG_SZ" /d "Hide"
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{a0c69a99-21c8-4671-8703-7934162fcf1d}\PropertyBag" /f /v "ThisPCPolicy" /t "REG_SZ" /d "Hide"
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag" /f /v "ThisPCPolicy" /t "REG_SZ" /d "Hide"
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{7d83ee9b-2244-4e70-b1f5-5393042af1e4}\PropertyBag" /f /v "ThisPCPolicy" /t "REG_SZ" /d "Hide" /reg:64
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag" /f /v "ThisPCPolicy" /t "REG_SZ" /d "Hide" /reg:64
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{f42ee2d3-909f-4907-8871-4c22fc0bf756}\PropertyBag" /f /v "ThisPCPolicy" /t "REG_SZ" /d "Hide" /reg:64
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{0ddd015d-b06c-45d5-8c4c-f59713854639}\PropertyBag" /f /v "ThisPCPolicy" /t "REG_SZ" /d "Hide" /reg:64
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{35286a68-3c57-41a1-bbb1-0eae73d76c95}\PropertyBag" /f /v "ThisPCPolicy" /t "REG_SZ" /d "Hide" /reg:64
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{a0c69a99-21c8-4671-8703-7934162fcf1d}\PropertyBag" /f /v "ThisPCPolicy" /t "REG_SZ" /d "Hide" /reg:64
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag" /f /v "ThisPCPolicy" /t "REG_SZ" /d "Hide" /reg:64
+::资源管理器窗口最小化时显示完整路径
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\CabinetState" /f /v "FullPath" /t "REG_DWORD" /d "1"
+reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CabinetState" /f /v "FullPath" /t "REG_DWORD" /d "1"
+::快速访问不显示常用文件夹
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /f /v "ShowFrequent" /t "REG_DWORD" /d "0"
+reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /f /v "ShowFrequent" /t "REG_DWORD" /d "0"
+::快速访问不显示最近使用的文件
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /f /v "ShowRecent" /t "REG_DWORD" /d "0"
+reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /f /v "ShowRecent" /t "REG_DWORD" /d "0"
+::隐藏资源管理器导航窗口中的库
+reg add "HKEY_CURRENT_USER\Software\Classes\CLSID\{031E4825-7B94-4dc3-B131-E946B44C8DD5}\ShellFolder" /f /v "Attributes" /t "REG_DWORD" /d "2962227469"
+reg add "HKEY_CURRENT_USER\Software\Classes\WOW6432Node\CLSID\{031E4825-7B94-4dc3-B131-E946B44C8DD5}\ShellFolder" /f /v "Attributes" /t "REG_DWORD" /d "2962227469" /reg:64
+::隐藏资源管理器导航窗口中的收藏夹
+reg add "HKEY_CURRENT_USER\Software\Classes\CLSID\{323CA680-C24D-4099-B94D-446DD2D7249E}\ShellFolder" /f /v "Attributes" /t "REG_DWORD" /d "2696937728"
+reg add "HKEY_CURRENT_USER\Software\Classes\WOW6432Node\CLSID\{323CA680-C24D-4099-B94D-446DD2D7249E}\ShellFolder" /f /v "Attributes" /t "REG_DWORD" /d "2696937728" /reg:64
+::隐藏资源管理器导航窗口中的家庭组
+reg add "HKEY_CURRENT_USER\Software\Classes\CLSID\{B4FB3F98-C1EA-428d-A78A-D1F5659CBA93}\ShellFolder" /f /v "Attributes" /t "REG_DWORD" /d "2962489612"
+reg add "HKEY_CURRENT_USER\Software\Classes\WOW6432Node\CLSID\{B4FB3F98-C1EA-428d-A78A-D1F5659CBA93}\ShellFolder" /f /v "Attributes" /t "REG_DWORD" /d "2962489612" /reg:64
+::隐藏资源管理器导航窗口中的网络
+reg add "HKEY_CURRENT_USER\Software\Classes\CLSID\{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}\ShellFolder" /f /v "Attributes" /t "REG_DWORD" /d "2954100836"
+reg add "HKEY_CURRENT_USER\Software\Classes\WOW6432Node\CLSID\{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}\ShellFolder" /f /v "Attributes" /t "REG_DWORD" /d "2954100836" /reg:64
+::隐藏资源管理器导航窗口中的OneDrive
+reg add "HKEY_CURRENT_USER\Software\Classes\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}\ShellFolder" /f /v "Attributes" /t "REG_DWORD" /d "4035969101"
+reg add "HKEY_CURRENT_USER\Software\Classes\WOW6432Node\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}\ShellFolder" /f /v "Attributes" /t "REG_DWORD" /d "4035969101" /reg:64
+::将Windows Update自动更新调整为 从不检查（不推荐）
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /f /v "AUOptions" /t "REG_DWORD" /d "1"
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /f /v "NoAutoUpdate" /t "REG_DWORD" /d "1"
+::*关闭默认共享
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" /f /v "AutoShareServer" /t "REG_DWORD" /d "0"
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" /f /v "AutoShareWks" /t "REG_DWORD" /d "0"
+::*关闭远程协助
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Remote Assistance" /f /v "fAllowToGetHelp" /t "REG_DWORD" /d "0"
+::Windows Media Player不显示首次使用对话框
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsMediaPlayer" /f /v "GroupPrivacyAcceptance" /t "REG_DWORD" /d "1"
+::关闭咨询与兴趣
+reg add "HKLM\Software\Policies\Microsoft\Windows\Windows Feeds" /f /v "EnableFeeds" /t "REG_DWORD" /d "0"
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Feeds" /f /v "ShellFeedsTaskbarViewMode" /t "REG_DWORD" /d "2"
+::Windows10任务栏透明 0-9对应十个透明等级,0为全透明
+reg add HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /f /v TaskbarAcrylicOpacity /t REG_DWORD /d 0
+::重启资源管理器
+taskkill /f /im explorer.exe
+start explorer.exe
+```
+
+## Win11优化设置
+```batch
+::关闭快速启动
+powercfg /h off
+::禁用索引服务
+sc stop WSearch
+sc config WSearch start= disabled
+::禁用诊断跟踪服务
+sc stop DiagTrack
+sc config DiagTrack start= disabled
+::禁用诊断执行服务，服务主机诊断，系统主机诊断
+sc stop diagsvc
+sc config diagsvc start= disabled
+sc stop WdiServiceHost
+sc config WdiServiceHost start= disabled
+sc stop WdiSystemHost
+sc config WdiSystemHost start= disabled
+::禁用错误报告
+sc stop WerSvc
+sc config WerSvc start= disabled
+::禁用脱机文件
+sc stop CscService
+sc config CscService start= disabled
+::关闭OneDrive
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\OneDrive" /f /v "DisableFileSyncNGSC" /t "REG_DWORD" /d "1"
+::打开资源管理器时显示此电脑
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /f /v "LaunchTo" /t "REG_DWORD" /d "1"
+reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /f /v "LaunchTo" /t "REG_DWORD" /d "1"
+::显示所有文件扩展名
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /f /v "HideFileExt" /t "REG_DWORD" /d "0"
+reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /f /v "HideFileExt" /t "REG_DWORD" /d "0"
+::显示隐藏的项目
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /f /v "Hidden" /t "REG_DWORD" /d "1"
+reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /f /v "Hidden" /t "REG_DWORD" /d "1"
+::创建快捷方式时不添"快捷方式"文字
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer" /f /v "Link" /t "REG_BINARY" /d "00000000"
+reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Explorer" /f /v "Link" /t "REG_BINARY" /d "00000000"
+::资源管理器窗口最小化时显示完整路径
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\CabinetState" /f /v "FullPath" /t "REG_DWORD" /d "1"
+reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CabinetState" /f /v "FullPath" /t "REG_DWORD" /d "1"
+::快速访问不显示常用文件夹
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /f /v "ShowFrequent" /t "REG_DWORD" /d "0"
+reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /f /v "ShowFrequent" /t "REG_DWORD" /d "0"
+::快速访问不显示最近使用的文件
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /f /v "ShowRecent" /t "REG_DWORD" /d "0"
+reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /f /v "ShowRecent" /t "REG_DWORD" /d "0"
+::隐藏资源管理器导航窗口中的网络
+reg add "HKEY_CURRENT_USER\Software\Classes\CLSID\{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}\ShellFolder" /f /v "Attributes" /t "REG_DWORD" /d "2954100836"
+reg add "HKEY_CURRENT_USER\Software\Classes\WOW6432Node\CLSID\{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}\ShellFolder" /f /v "Attributes" /t "REG_DWORD" /d "2954100836" /reg:64
+::将Windows Update自动更新调整为 从不检查（不推荐）
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /f /v "AUOptions" /t "REG_DWORD" /d "1"
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /f /v "NoAutoUpdate" /t "REG_DWORD" /d "1"
+::*关闭默认共享
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" /f /v "AutoShareServer" /t "REG_DWORD" /d "0"
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" /f /v "AutoShareWks" /t "REG_DWORD" /d "0"
+::*关闭远程协助
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Remote Assistance" /f /v "fAllowToGetHelp" /t "REG_DWORD" /d "0"
+::使用旧版右键菜单
+reg add HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32 /ve /f
+::任务栏隐藏搜索
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /f /v "SearchboxTaskbarMode" /t "REG_DWORD" /d "0"
+reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /f /v "SearchboxTaskbarMode" /t "REG_DWORD" /d "0"
+::任务栏隐藏任务视图
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /f /v "ShowTaskViewButton" /t "REG_DWORD" /d "0"
+reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /f /v "ShowTaskViewButton" /t "REG_DWORD" /d "0"
+::任务栏隐藏小组件
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /f /v "TaskbarDa" /t "REG_DWORD" /d "0"
+::重启资源管理器
+taskkill /f /im explorer.exe
+start explorer.exe
+```
