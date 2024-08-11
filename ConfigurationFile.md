@@ -1,6 +1,6 @@
 # VSCode
 `settings.json`
-```json
+```jsonc
 {
     //在没有从上一次会话中恢复出信息的情况下启动时不打开任何编辑器(默认启动时显示欢迎页)
     "workbench.startupEditor": "none",
