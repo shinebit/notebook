@@ -199,15 +199,6 @@ reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\
 ::创建快捷方式时不添"快捷方式"文字
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer" /f /v "Link" /t "REG_BINARY" /d "00000000"
 reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Explorer" /f /v "Link" /t "REG_BINARY" /d "00000000"
-::添加Windows照片查看器为JPEG、PNG、BMP、GIF、HEIC图片的打开方式
-reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" /f /v ".jpg" /t "REG_SZ" /d "PhotoViewer.FileAssoc.Tiff"
-reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" /f /v ".jpe" /t "REG_SZ" /d "PhotoViewer.FileAssoc.Tiff"
-reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" /f /v ".jpeg" /t "REG_SZ" /d "PhotoViewer.FileAssoc.Tiff"
-reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" /f /v ".jfif" /t "REG_SZ" /d "PhotoViewer.FileAssoc.Tiff"
-reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" /f /v ".png" /t "REG_SZ" /d "PhotoViewer.FileAssoc.Tiff"
-reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" /f /v ".bmp" /t "REG_SZ" /d "PhotoViewer.FileAssoc.Tiff"
-reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" /f /v ".gif" /t "REG_SZ" /d "PhotoViewer.FileAssoc.Tiff"
-reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" /f /v ".heic" /t "REG_SZ" /d "PhotoViewer.FileAssoc.Tiff"
 ::隐藏此电脑中视频、图片、文档、下载、音乐、桌面、3D对象七个文件夹
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{7d83ee9b-2244-4e70-b1f5-5393042af1e4}\PropertyBag" /f /v "ThisPCPolicy" /t "REG_SZ" /d "Hide"
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag" /f /v "ThisPCPolicy" /t "REG_SZ" /d "Hide"
