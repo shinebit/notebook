@@ -246,8 +246,6 @@ reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Param
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" /f /v "AutoShareWks" /t "REG_DWORD" /d "0"
 ::*关闭远程协助
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Remote Assistance" /f /v "fAllowToGetHelp" /t "REG_DWORD" /d "0"
-::Windows Media Player不显示首次使用对话框
-reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsMediaPlayer" /f /v "GroupPrivacyAcceptance" /t "REG_DWORD" /d "1"
 ::关闭咨询与兴趣
 reg add "HKLM\Software\Policies\Microsoft\Windows\Windows Feeds" /f /v "EnableFeeds" /t "REG_DWORD" /d "0"
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Feeds" /f /v "ShellFeedsTaskbarViewMode" /t "REG_DWORD" /d "2"
@@ -256,6 +254,7 @@ reg add HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Adv
 ::重启资源管理器
 taskkill /f /im explorer.exe
 start explorer.exe
+pause
 ```
 
 ## Win11优化设置
@@ -328,4 +327,5 @@ reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Ad
 ::重启资源管理器
 taskkill /f /im explorer.exe
 start explorer.exe
+pause
 ```
