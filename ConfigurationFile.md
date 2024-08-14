@@ -6,8 +6,6 @@
     "workbench.startupEditor": "none",
     //取消显示命令中心(搜索栏)
     "window.commandCenter": false,
-    //自动保存
-    "files.autoSave": "afterDelay",
     //打开文件时猜测字符集编码
     "files.autoGuessEncoding": true,
     //光标动画样式
