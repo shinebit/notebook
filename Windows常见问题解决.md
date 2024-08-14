@@ -291,9 +291,6 @@ reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\
 ::显示隐藏的项目
 reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /f /v "Hidden" /t "REG_DWORD" /d "1"
 reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /f /v "Hidden" /t "REG_DWORD" /d "1"
-::创建快捷方式时不添"快捷方式"文字
-reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer" /f /v "Link" /t "REG_BINARY" /d "00000000"
-reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Explorer" /f /v "Link" /t "REG_BINARY" /d "00000000"
 ::资源管理器窗口最小化时显示完整路径
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\CabinetState" /f /v "FullPath" /t "REG_DWORD" /d "1"
 reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CabinetState" /f /v "FullPath" /t "REG_DWORD" /d "1"
