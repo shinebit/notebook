@@ -13,7 +13,7 @@ slmgr /ato
 
 ## 任意更改系统更新暂停的时间
 ```batch
-reg add “HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings” /v FlightSettingsMaxPauseDays /t reg_dword /d 5000 /f
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" /v FlightSettingsMaxPauseDays /t reg_dword /d 5000 /f
 ```
 
 ## 自带WebDAV Client问题
