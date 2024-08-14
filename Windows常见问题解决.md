@@ -54,6 +54,68 @@ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\S
 
 ## 卸载自带UWP应用
 ```batch
+::卸载3D查看器
+powershell "Get-AppxPackage -All *Microsoft3DViewer* | Remove-AppxPackage"
+::卸载Cortant
+powershell "Get-AppxPackage -All *Microsoft.549981C3F5F10* | Remove-AppxPackage"
+::卸载地图
+powershell "Get-AppxPackage -All *WindowsMaps* | Remove-AppxPackage"
+::卸载电影和电视
+powershell "Get-AppxPackage -All *ZuneVideo* | Remove-AppxPackage"
+::卸载反馈中心
+powershell "Get-AppxPackage -All *WindowsFeedbackHub* | Remove-AppxPackage"
+::卸载Groove音乐
+powershell "Get-AppxPackage -All *ZuneMusic* | Remove-AppxPackage"
+::卸载画图3D
+powershell "Get-AppxPackage -All *MSPaint* | Remove-AppxPackage"
+::卸载混合现实门户
+powershell "Get-AppxPackage -All *MixedReality.Portal* | Remove-AppxPackage"
+::卸载获取帮助
+powershell "Get-AppxPackage -All *GetHelp* | Remove-AppxPackage"
+::卸载录音机
+powershell "Get-AppxPackage -All *WindowsSoundRecorder* | Remove-AppxPackage"
+::卸载Microsoft Solitaire Collection
+powershell "Get-AppxPackage -All *Microsoft.MicrosoftSolitaireCollection* | Remove-AppxPackage"
+::卸载闹钟和时钟
+powershell "Get-AppxPackage -All *WindowsAlarms* | Remove-AppxPackage"
+::卸载你的手机
+powershell "Get-AppxPackage -All *YourPhone* | Remove-AppxPackage"
+::卸载OfficeHub
+powershell "Get-AppxPackage -All *MicrosoftOfficeHub* | Remove-AppxPackage"
+::卸载OneNote
+powershell "Get-AppxPackage -All *Office.OneNote* | Remove-AppxPackage"
+::卸载人脉
+powershell "Get-AppxPackage -All *Microsoft.People* | Remove-AppxPackage"
+::卸载邮件和日历
+powershell "Get-AppxPackage -All *communicationsapps* | Remove-AppxPackage"
+::卸载Skype
+powershell "Get-AppxPackage -All *SkypeApp* | Remove-AppxPackage"
+::卸载Sticky Notes
+powershell "Get-AppxPackage -All *StickyNotes* | Remove-AppxPackage"
+::卸载使用技巧
+powershell "Get-AppxPackage -All *Getstarted* | Remove-AppxPackage"
+::卸载天气
+powershell "Get-AppxPackage -All *BingWeather* | Remove-AppxPackage"
+::卸载相机
+powershell "Get-AppxPackage -All *WindowsCamera* | Remove-AppxPackage"
+::卸载照片
+powershell "Get-AppxPackage -All *Windows.Photos* | Remove-AppxPackage"
+::卸载Wallet（钱包）
+powershell "Get-AppxPackage -All *Wallet* | Remove-AppxPackage"
+::卸载VP9视频扩展
+powershell "Get-AppxPackage -All *Microsoft.VP9VideoExtensions* | Remove-AppxPackage"
+::卸载Web媒体扩展
+powershell "Get-AppxPackage -All *Microsoft.WebMediaExtensions* | Remove-AppxPackage"
+::卸载Webp图像扩展
+powershell "Get-AppxPackage -All *Microsoft.WebpImageExtension* | Remove-AppxPackage"
+::卸载Clipchamp视频编辑器
+powershell "Get-AppxPackage -All *Clipchamp.Clipchamp* | Remove-AppxPackage"
+::卸载MicrosoftToDo
+powershell "Get-AppxPackage -All *Microsoft.Todos* | Remove-AppxPackage"
+::卸载Microsoft咨询
+powershell "Get-AppxPackage -All *Microsoft.BingNews* | Remove-AppxPackage"
+::卸载快速助手
+powershell "Get-AppxPackage -All *MicrosoftCorporationII.QuickAssist* | Remove-AppxPackage"
 ```
 
 ## Win10优化设置
