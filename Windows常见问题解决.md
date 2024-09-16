@@ -93,6 +93,8 @@ powershell "Get-AppxPackage -All *Microsoft.Todos* | Remove-AppxPackage"
 powershell "Get-AppxPackage -All *Microsoft.BingNews* | Remove-AppxPackage"
 ::卸载快速助手
 powershell "Get-AppxPackage -All *MicrosoftCorporationII.QuickAssist* | Remove-AppxPackage"
+::卸载小组件
+powershell "Get-AppxPackage -All *MicrosoftWindows.Client.WebExperience* | Remove-AppxPackage"
 pause
 ```
 
@@ -275,8 +277,6 @@ reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /
 ::任务栏隐藏任务视图
 reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /f /v "ShowTaskViewButton" /t "REG_DWORD" /d "0"
 reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /f /v "ShowTaskViewButton" /t "REG_DWORD" /d "0"
-::任务栏隐藏小组件
-reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /f /v "TaskbarDa" /t "REG_DWORD" /d "0"
 ::重启资源管理器
 taskkill /f /im explorer.exe
 start explorer.exe
