@@ -26,9 +26,8 @@ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" /v Fli
 1. 修改好后，再选择hexadecimal（十六进制）
 
 ## 网络适配器的网络名称修改
-定位注册表 `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles\`
-profiles文件夹下的不同的网络配置信息(有可能会很多,连过的网络越多,profiles下的文件夹就会越多)
-查看目录下配置并对ProfileName名称进行编辑
+1. 定位注册表 `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles\`
+1. `profiles`文件夹下的不同的网络配置信息(有可能会很多,连过的网络越多,profiles下的文件夹就会越多),查看目录下配置并对`ProfileName`名称进行编辑
 
 ## 卸载自带UWP应用
 ```batch
@@ -94,6 +93,7 @@ powershell "Get-AppxPackage -All *Microsoft.Todos* | Remove-AppxPackage"
 powershell "Get-AppxPackage -All *Microsoft.BingNews* | Remove-AppxPackage"
 ::卸载快速助手
 powershell "Get-AppxPackage -All *MicrosoftCorporationII.QuickAssist* | Remove-AppxPackage"
+pause
 ```
 
 ## Win10优化设置
