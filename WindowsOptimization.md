@@ -127,3 +127,13 @@ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" /v Fli
 ## 网络适配器的网络名称修改
 1. 定位注册表 `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles\`
 1. `profiles`文件夹下的不同的网络配置信息(有可能会很多,连过的网络越多,profiles下的文件夹就会越多),查看目录下配置并对`ProfileName`名称进行编辑
+
+## 个性化设置
+- Win10任务栏透明,0-9对应十个透明等级,0为全透明
+```batch
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /f /v "TaskbarAcrylicOpacity" /t "REG_DWORD" /d "0"
+```
+- Win11使用旧版右键菜单
+```batch
+reg add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /ve /f
+```
