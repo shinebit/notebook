@@ -22,10 +22,10 @@ sc config WerSvc start= disabled
 sc stop CscService
 sc config CscService start= disabled
 ::删除IE浏览器
-Dism /online /Disable-Feature /FeatureName:Internet-Explorer-Optional-amd64 /Remove /NoRestart
+Dism /Online /Disable-Feature /FeatureName:Internet-Explorer-Optional-amd64 /Remove /NoRestart
 ::删除媒体功能和Windows Media Player
-Dism /online /Disable-Feature /FeatureName:MediaPlayback /Remove /NoRestart
-Dism /online /Disable-Feature /FeatureName:WindowsMediaPlayer /Remove /NoRestart
+Dism /Online /Disable-Feature /FeatureName:MediaPlayback /Remove /NoRestart
+Dism /Online /Disable-Feature /FeatureName:WindowsMediaPlayer /Remove /NoRestart
 ::卸载3D查看器
 powershell "Get-AppxPackage -All *Microsoft3DViewer* | Remove-AppxPackage"
 ::卸载Cortant
