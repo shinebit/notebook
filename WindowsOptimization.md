@@ -1,4 +1,4 @@
-## 禁用模块
+## 禁用模块卸载UWP应用
 ```batch
 ::关闭快速启动
 powercfg /h off
@@ -26,11 +26,6 @@ Dism /online /Disable-Feature /FeatureName:Internet-Explorer-Optional-amd64 /Rem
 ::删除媒体功能和Windows Media Player
 Dism /online /Disable-Feature /FeatureName:MediaPlayback /Remove /NoRestart
 Dism /online /Disable-Feature /FeatureName:WindowsMediaPlayer /Remove /NoRestart
-pause
-```
-
-## 卸载自带UWP应用
-```batch
 ::卸载3D查看器
 powershell "Get-AppxPackage -All *Microsoft3DViewer* | Remove-AppxPackage"
 ::卸载Cortant
