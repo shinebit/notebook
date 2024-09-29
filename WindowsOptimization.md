@@ -26,6 +26,7 @@ Dism /online /Disable-Feature /FeatureName:Internet-Explorer-Optional-amd64 /Rem
 ::删除媒体功能和Windows Media Player
 Dism /online /Disable-Feature /FeatureName:MediaPlayback /Remove /NoRestart
 Dism /online /Disable-Feature /FeatureName:WindowsMediaPlayer /Remove /NoRestart
+pause
 ```
 
 ## 卸载自带UWP应用
