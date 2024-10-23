@@ -30,11 +30,6 @@ demuxer-max-bytes=64MiB
 #用内存而不是磁盘缓存
 cache-on-disk=no
 
-#无边框
-border=no
-#设置默认打开的窗口大小、位置(1280x720、居中）
-geometry=1280x720+50%+50%
-
 #自动加载外部字幕文件方式。（fuzzy加载同文件夹含有视频文件名的字幕文件）
 sub-auto=fuzzy
 
