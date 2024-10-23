@@ -35,6 +35,6 @@ sub-auto=fuzzy
 
 #启动默认音量
 volume=100
-#程序最大音量[100,1000]
+#程序最大音量
 volume-max=100
 ```
