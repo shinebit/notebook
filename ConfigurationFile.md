@@ -14,8 +14,6 @@
     "editor.smoothScrolling": true,
     //启用平滑插入动画
     "editor.cursorSmoothCaretAnimation": "on",
-    //自动换行
-    "editor.wordWrap": "on",
     //不启用工作区信任
     "security.workspace.trust.enabled": false
 }
