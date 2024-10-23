@@ -1,4 +1,4 @@
-## 禁用模块卸载UWP应用
+## 禁用模块
 ```batch
 ::关闭快速启动
 powercfg /h off
