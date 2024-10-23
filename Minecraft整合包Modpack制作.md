@@ -17,7 +17,7 @@ Modpack.zip
     "version": "[游戏版本]",
     "modLoaders": [
       {
-        "id": "[mod加载器及版本]",
+        "id": "[mod加载器类型]-[mod加载器版本]",
         "primary": true
       }
     ]
