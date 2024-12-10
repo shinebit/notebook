@@ -45,8 +45,5 @@ cl_crosshair_friendly_warning "0";cl_crosshair_recoil "0";cl_crosshairalpha "200
 # Valorant
 ### Crosshair
 ```
-0;s;1;P;c;1;o;1;d;1;z;1;0b;0;1b;0;S;d;0
-```
-```
 0;s;1;P;c;1;h;0;f;0;0t;1;0l;3;0o;0;0a;1;0f;0;1b;0;S;d;0
 ```
